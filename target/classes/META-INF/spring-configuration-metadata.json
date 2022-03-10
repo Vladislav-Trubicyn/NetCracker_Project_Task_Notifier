@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "service.crawler",
+      "type": "com.dreamsearcher.notifier.restClient.implement.CrawlerClientImpl",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.CrawlerClientImpl"
+    },
+    {
+      "name": "service.userdata",
+      "type": "com.dreamsearcher.notifier.restClient.implement.UserDataClientImpl",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.UserDataClientImpl"
+    },
+    {
+      "name": "service.userdatadictionary",
+      "type": "com.dreamsearcher.notifier.restClient.implement.UserDataDictionaryClientImpl",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.UserDataDictionaryClientImpl"
+    }
+  ],
+  "properties": [
+    {
+      "name": "service.crawler.all-items",
+      "type": "java.util.List<com.dreamsearcher.notifier.model.Item>",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.CrawlerClientImpl"
+    },
+    {
+      "name": "service.crawler.all-runs",
+      "type": "java.util.List<com.dreamsearcher.notifier.model.Run>",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.CrawlerClientImpl"
+    },
+    {
+      "name": "service.userdata.all-users",
+      "type": "java.util.List<com.dreamsearcher.notifier.model.User>",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.UserDataClientImpl"
+    },
+    {
+      "name": "service.userdatadictionary.all-price-settings",
+      "type": "java.util.List<com.dreamsearcher.notifier.model.PriceSetting>",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.UserDataDictionaryClientImpl"
+    },
+    {
+      "name": "service.userdatadictionary.items-to-find",
+      "type": "java.util.List<com.dreamsearcher.notifier.model.ItemToFind>",
+      "sourceType": "com.dreamsearcher.notifier.restClient.implement.UserDataDictionaryClientImpl"
+    }
+  ],
+  "hints": []
+}

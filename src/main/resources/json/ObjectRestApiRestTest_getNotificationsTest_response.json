@@ -1,0 +1,156 @@
+[
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 68510.0 и условием: < 70000 доступен в магазине DNS по данной ссылке url2",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"1",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67210.0 и условием: < 70000 доступен в магазине DNS по данной ссылке url3",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"1",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67211.0 и условием: < 70000 доступен в магазине DNS по данной ссылке url4",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"1",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 65210.0 и условием: < 70000 доступен в магазине DNS по данной ссылке url5",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"1",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 70999.0 и условием: > 67209 доступен в магазине DNS по данной ссылке url1",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"2",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 68510.0 и условием: > 67209 доступен в магазине DNS по данной ссылке url2",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"2",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67210.0 и условием: > 67209 доступен в магазине DNS по данной ссылке url3",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"2",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67211.0 и условием: > 67209 доступен в магазине DNS по данной ссылке url4",
+    "itemId":"1",
+    "userId":"1",
+    "userWishId":"2",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/256Gb, SM-G991, фиолетовый фантом с ценой 30999.0 и условием: > 30000 доступен в магазине DNS по данной ссылке url6",
+    "itemId":"2",
+    "userId":"2",
+    "userWishId":"3",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/512Gb, SM-G991, фиолетовый фантом с ценой 1587.0 и условием: < 2000 доступен в магазине DNS по данной ссылке url15",
+    "itemId":"3",
+    "userId":"3",
+    "userWishId":"4",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 70999.0 и условием: > 65210 доступен в магазине DNS по данной ссылке url1",
+    "itemId":"1",
+    "userId":"4",
+    "userWishId":"5",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 68510.0 и условием: > 65210 доступен в магазине DNS по данной ссылке url2",
+    "itemId":"1",
+    "userId":"4",
+    "userWishId":"5",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67210.0 и условием: > 65210 доступен в магазине DNS по данной ссылке url3",
+    "itemId":"1",
+    "userId":"4",
+    "userWishId":"5",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  },
+  {
+    "notificationId":null,
+    "notificationText":"Данный товар Смартфон Samsung Galaxy S21 8/128Gb, SM-G991, фиолетовый фантом с ценой 67211.0 и условием: > 65210 доступен в магазине DNS по данной ссылке url4",
+    "itemId":"1",
+    "userId":"4",
+    "userWishId":"5",
+    "shopName":"DNS",
+    "deliveryStatus":false,
+    "retryCount":1,
+    "deliveredTime":""
+  }
+]
