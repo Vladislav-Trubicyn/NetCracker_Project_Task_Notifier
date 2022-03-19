@@ -11,4 +11,7 @@ import java.util.List;
 public interface NotificationRepository extends CrudRepository<Notification, String>
 {
     Notification findFirstByItemIdAndUserIdAndUserWishIdOrderByRetryCountDesc(String itemId, String userId, String userWishId);
+    List<Notification> findAllByCreationTimeBetween(String startDate, String endDate);
+    List<Notification> findAllByDeliveryStatusAndCreationTimeBetween(boolean isDelivery, String startDate, String endDate);
+    List<Notification> findAllByDeliveryStatus(boolean isDelivery);
 }

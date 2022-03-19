@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -17,10 +16,14 @@ import java.util.*;
 @Profile("!test")
 public class CrawlerClientImpl implements CrawlerClient
 {
-    private static final String SERVICE_HOST = "http://localhost";
-    private static final String SERVICE_PORT = "8080";
-    private static final String ITEMS_PATH = "/api/v1/items";
-    private static final String RUNS_PATH = "/api/v1/runs";
+    @Value("${crawler.service.host}")
+    private  String SERVICE_HOST;
+    @Value("${crawler.service.port}")
+    private  String SERVICE_PORT;
+    @Value("${crawler.service.item-path}")
+    private  String ITEMS_PATH;
+    @Value("${crawler.service.run-path}")
+    private  String RUNS_PATH;
 
     private RestTemplate restTemplate;
 

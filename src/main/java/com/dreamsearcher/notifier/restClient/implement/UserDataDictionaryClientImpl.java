@@ -9,19 +9,21 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @ConfigurationProperties(prefix = "service.userdatadictionary")
 @Profile("!test")
 public class UserDataDictionaryClientImpl implements UserDataDictionaryClient
 {
-    private static final String SERVICE_HOST = "http://localhost";
-    private static final String SERVICE_PORT = "8080";
-    private static final String ITEMS_TO_FIND = "/api/v1/ItemsToFind";
-    private static final String PRICE_SETTINGS = "/api/v1/PriceSetting";
+    @Value("${userdatadictionary.service.host}")
+    private String SERVICE_HOST;
+    @Value("${userdatadictionary.service.port}")
+    private String SERVICE_PORT;
+    @Value("${userdatadictionary.service.items-to-find-path}")
+    private String ITEMS_TO_FIND;
+    @Value("${userdatadictionary.service.price-settings-path}")
+    private String PRICE_SETTINGS;
 
     private RestTemplate restTemplate;
 

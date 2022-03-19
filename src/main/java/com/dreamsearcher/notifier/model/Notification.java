@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -33,6 +30,13 @@ public class Notification
     private int retryCount;
     private String creationTime;
     private String deliveredTime;
+
+    @Transient
+    private String username;
+    @Transient
+    private String userEmail;
+    @Transient
+    private boolean isSend = false;
 
     public Notification(String notificationText, String itemId, String userId, String userWishId, String shopName, boolean deliveryStatus, int retryCount, String creationTime, String deliveredTime)
     {

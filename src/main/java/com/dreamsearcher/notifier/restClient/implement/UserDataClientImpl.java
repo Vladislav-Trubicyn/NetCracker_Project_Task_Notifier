@@ -3,6 +3,7 @@ package com.dreamsearcher.notifier.restClient.implement;
 import com.dreamsearcher.notifier.model.User;
 import com.dreamsearcher.notifier.restClient.UserDataClient;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,12 @@ import java.util.List;
 @Profile("!test")
 public class UserDataClientImpl implements UserDataClient
 {
-    private static final String SERVICE_HOST = "http://localhost";
-    private static final String SERVICE_PORT = "8080";
-    private static final String USERS_PATH = "/api/v1/users";
+    @Value("${userdata.service.host}")
+    private String SERVICE_HOST;
+    @Value("${userdata.service.port}")
+    private String SERVICE_PORT;
+    @Value("${userdata.service.path}")
+    private String USERS_PATH;
 
     private RestTemplate restTemplate;
 

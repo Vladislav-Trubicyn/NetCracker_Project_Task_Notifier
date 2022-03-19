@@ -1,6 +1,5 @@
 package com.dreamsearcher.notifier.service;
 
-import com.dreamsearcher.notifier.error.EmailSendTroubleException;
 import com.dreamsearcher.notifier.model.*;
 import com.dreamsearcher.notifier.repository.NotificationRepository;
 import com.dreamsearcher.notifier.restClient.CrawlerClient;
@@ -8,10 +7,8 @@ import com.dreamsearcher.notifier.restClient.UserDataClient;
 import com.dreamsearcher.notifier.restClient.UserDataDictionaryClient;
 import com.dreamsearcher.notifier.service.strategy.PriceMatchSelector;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,26 +17,28 @@ import java.util.stream.Collectors;
 @Service
 public class NotificationEngine
 {
-    @Value("${spring.mail.username}")
-    private String emailNotification;
+    @Value("${sender.servie.host}")
+    private String SERVICE_HOST;
+    @Value("${sender.servie.port}")
+    private String SERVICE_PORT;
+    @Value("${sender.servie.path}")
+    private String SERVICE_PATH;
 
     private CrawlerClient crawlerClient;
     private UserDataClient userDataClient;
     private UserDataDictionaryClient userDataDictionaryClient;
     private NotificationRepository notificationRepository;
-    private JavaMailSender javaMailSender;
-    private SimpleMailMessage simpleMailMessage;
+    private RestTemplate restTemplate;
 
     private PriceMatchSelector priceMatchSelector;
 
-    public NotificationEngine(CrawlerClient crawlerClient, UserDataClient userDataClient, UserDataDictionaryClient userDataDictionaryClient, NotificationRepository notificationRepository, JavaMailSender javaMailSender, SimpleMailMessage simpleMailMessage, PriceMatchSelector priceMatchSelector)
+    public NotificationEngine(CrawlerClient crawlerClient, UserDataClient userDataClient, UserDataDictionaryClient userDataDictionaryClient, NotificationRepository notificationRepository, RestTemplate restTemplate, PriceMatchSelector priceMatchSelector)
     {
         this.crawlerClient = crawlerClient;
         this.userDataClient = userDataClient;
         this.userDataDictionaryClient = userDataDictionaryClient;
         this.notificationRepository = notificationRepository;
-        this.javaMailSender = javaMailSender;
-        this.simpleMailMessage = simpleMailMessage;
+        this.restTemplate = restTemplate;
         this.priceMatchSelector = priceMatchSelector;
     }
 
@@ -93,83 +92,68 @@ public class NotificationEngine
         return notifications;
     }
 
-    public void processNotifications(List<Notification> notifications)
+    public void notificationBuildingProcess(List<Notification> billets)
     {
-        StringBuilder allNotification = new StringBuilder();
-        boolean isSave = false;
         int maxSuccsessCount = 5;
+        List<Notification> notifications = new ArrayList<>();
 
-        for(int i = 0; i < notifications.size(); i++)
-        {
-            if(notifications.get(i).getUserId().equals(notifications.get(i+1).getUserId()))
+        billets.stream().forEach(billet -> {
+
+            Notification notificationFromList = notifications.stream().filter(
+                    notification -> notification.getUserId().equals(billet.getUserId()) &&
+                                    notification.getUserWishId().equals(billet.getUserWishId())).findFirst().orElse(null);
+
+            if(notificationFromList == null)
             {
-                allNotification.append(notifications.get(i).getNotificationText() + System.lineSeparator());
-                isSave = (i + 1) >= notifications.size() - 1 ? true : false;
+                Notification buildNotification = buildNotification(billet,maxSuccsessCount);
+
+                if(buildNotification != null)
+                {
+                    notifications.add(buildNotification(billet,maxSuccsessCount));
+                }
             }
             else
             {
-                isSave = true;
+                int indexObject = notifications.indexOf(notificationFromList);
+
+                if(indexObject != -1)
+                {
+                    notificationFromList.setNotificationText(notificationFromList.getNotificationText() + System.lineSeparator() + billet.getNotificationText());
+                    notifications.set(indexObject, notificationFromList);
+                }
             }
 
-            if(isSave)
-            {
-                allNotification.append(notifications.get(i).getNotificationText() + System.lineSeparator());
+        });
 
-                Notification notificationFromDB = notificationRepository.findFirstByItemIdAndUserIdAndUserWishIdOrderByRetryCountDesc(notifications.get(i).getItemId(), notifications.get(i).getUserId(), notifications.get(i).getUserWishId());
-                notifications.get(i).setNotificationText(allNotification.toString());
-
-                if(notificationFromDB != null)
-                {
-                    if(notificationFromDB.getRetryCount() < maxSuccsessCount)
-                    {
-                        notifications.get(i).setRetryCount(notificationFromDB.getRetryCount() + 1);
-
-                        if(sendNotification(notifications.get(i)))
-                        {
-                            notificationRepository.save(notifications.get(i));
-                        }
-                    }
-                }
-                else
-                {
-                    if(sendNotification(notifications.get(i)))
-                    {
-                        notificationRepository.save(notifications.get(i));
-                    }
-                }
-
-                allNotification.delete(0, allNotification.length());
-                isSave = false;
-            }
-        }
-
+        restTemplate.postForObject(SERVICE_HOST + ":" + SERVICE_PORT + SERVICE_PATH, notifications, List.class);
     }
 
-    private boolean sendNotification(Notification notification)
+    private Notification buildNotification(Notification notification, int maxSuccsessCount)
     {
-
         User user = userDataClient.getUserById(notification.getUserId());
 
-        simpleMailMessage.setTo(user.getEmail());
-        simpleMailMessage.setFrom(emailNotification);
-        simpleMailMessage.setSubject("Уважаемый пользователь, "  + user.getUsername());
-        simpleMailMessage.setText(notification.getNotificationText());
+        Notification notificationFromDB = notificationRepository.findFirstByItemIdAndUserIdAndUserWishIdOrderByRetryCountDesc(
+                notification.getItemId(),
+                notification.getUserId(),
+                notification.getUserWishId());
 
-        try
+        notification.setUsername(user.getUsername());
+        notification.setUserEmail(user.getEmail());
+
+        if(notificationFromDB != null)
         {
-            javaMailSender.send(simpleMailMessage);
-            return true;
+            if(notificationFromDB.getRetryCount() < maxSuccsessCount)
+            {
+                notification.setRetryCount(notificationFromDB.getRetryCount() + 1);
+            }
+            else
+            {
+                notification = null;
+            }
         }
-        catch (MailException mailException)
-        {
-            throw new EmailSendTroubleException(mailException.getMessage());
-        }
+
+        return notification;
     }
 
 
-    //TEMP, Special for task unit test
-    public User getUserByIdForTest(String userId)
-    {
-        return userDataClient.getUserById(userId);
-    }
 }
