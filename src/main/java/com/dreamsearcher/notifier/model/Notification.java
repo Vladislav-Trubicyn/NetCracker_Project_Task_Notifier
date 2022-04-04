@@ -38,6 +38,20 @@ public class Notification
     @Transient
     private boolean isSend = false;
 
+    public Notification(String notificationId, String notificationText, String itemId, String userId, String userWishId, String shopName, boolean deliveryStatus, int retryCount, String creationTime, String deliveredTime)
+    {
+        this.notificationId = notificationId;
+        this.notificationText = notificationText;
+        this.itemId = itemId;
+        this.userId = userId;
+        this.userWishId = userWishId;
+        this.shopName = shopName;
+        this.deliveryStatus = deliveryStatus;
+        this.retryCount = retryCount;
+        this.creationTime = creationTime;
+        this.deliveredTime = deliveredTime;
+    }
+
     public Notification(String notificationText, String itemId, String userId, String userWishId, String shopName, boolean deliveryStatus, int retryCount, String creationTime, String deliveredTime)
     {
         this.notificationText = notificationText;

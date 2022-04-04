@@ -40,14 +40,14 @@ class NotificationApplicationTests
 	void getNotifications() throws Exception
 	{
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-				//.get("http://localhost:8080/api/v1/notifications?eventDateTime=1646740882176&eventDateTime=1646745114802"))
-				.get("http://localhost:8080/api/v1/notifications"))
+				.get("http://localhost:8080/api/v1/notifications?eventDateTime=1646740882176&eventDateTime=1646740882179"))
+				//.get("http://localhost:8080/api/v1/notifications"))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
 		//String actualResult = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
-		/*String expectedResult = AppUtility.getContentFromResourceFile("json/rest/RestApiTest_getNotifications_response.json");
+		String expectedResult = AppUtility.getContentFromResourceFile("json/rest/RestApiTest_getNotifications_response.json");
 
-		TestValidationUtility.validateResponse(result.getResponse(), expectedResult);*/
+		TestValidationUtility.validateResponse(result.getResponse(), expectedResult);
 	}
 
 	@Test

@@ -19,6 +19,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" value="c1421b9e-0af2-46ce-b1b6-d533e152478e" />
+          <factory-entry name="notifier" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

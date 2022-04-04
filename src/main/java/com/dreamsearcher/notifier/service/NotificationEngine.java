@@ -60,7 +60,6 @@ public class NotificationEngine
                 String priceSettingId = userWishes.getPriceSettingId();
                 String values = userWishes.getValues();
 
-                ItemToFind itemToFind = itemToFinds.stream().filter(i -> i.getItemToFindId().equals(itemToFindId)).findFirst().orElseThrow();
                 PriceSetting priceSetting = priceSettings.stream().filter(p -> p.getPriceSettingId().equals(priceSettingId)).findFirst().orElseThrow();
 
                 List<Item> suitableItems = unprocessedItems.stream().filter(i -> i.getItemId().equals(itemToFindId)).collect(Collectors.toList());

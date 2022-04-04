@@ -15,29 +15,28 @@ spring:
       ddl-auto: update
 
 server:
-  port: 8081
+  port: 8080
 
-crawler.service.host: http://localhost
-crawler.service.port: 8080
-crawler.service.item-path: /api/v1/items
-crawler.service.run-path: /api/v1/runs
+crawler.service.host: ${CRAWLER_HOST:http://localhost}
+crawler.service.port: ${CRAWLER_PORT:8080}
+crawler.service.item-path: ${CRAWLER_ITEM_PATH:/api/v1/items}
+crawler.service.run-path: ${CRAWLER_RUN_PATH:/api/v1/runs}
 
-userdata.service.host: http://localhost
-userdata.service.port: 8080
-userdata.service.path: /api/v1/users
+userdata.service.host: ${USERDATA_HOST:http://localhost}
+userdata.service.port: ${USERDATA_PORT:8080}
+userdata.service.path: ${USERDATA_PATH:/api/v1/users}
 
-userdatadictionary.service.host: http://localhost
-userdatadictionary.service.port: 8080
-userdatadictionary.service.items-to-find-path: /api/v1/ItemsToFind
-userdatadictionary.service.price-settings-path: /api/v1/PriceSetting
+userdatadictionary.service.host: ${USERDATADIC_HOST:http://localhost}
+userdatadictionary.service.port: ${USERDATADIC_HOST:8080}
+userdatadictionary.service.items-to-find-path: ${USERDATADIC_ITEMS_TO_FIND_PATH:/api/v1/ItemsToFind}
+userdatadictionary.service.price-settings-path: ${USERDATADIC_PRICE_SETTINGS_PATH:/api/v1/PriceSetting}
 
-sender.servie.host: http://localhost
-sender.servie.port: 8080
-sender.servie.path: /api/v1/sender
+sender.servie.host: ${SENDER_HOST:http://localhost}
+sender.servie.port: ${SENDER_PORT:8081}
+sender.servie.path: ${SENDER_PATH:/api/v1/sender}
 
 #---
 #spring:
 #  profiles: test
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
-

@@ -1,0 +1,47 @@
+version: '3.3'
+services:
+  notification:
+    container_name: DreamSearcher_notification-1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: notification:1
+    ports:
+      - 8080:8080
+    env_file:
+      - environment.env
+    networks:
+      - backend
+    depends_on:
+      - postgres
+      - sender
+    links:
+      - postgres:database
+
+  sender:
+    container_name: DreamSearcher_sender-1
+    build:
+      context: .
+      dockerfile: SenderDockerfile
+    image: sender:1
+    ports:
+      - 8081:8081
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:14.2
+    container_name: DreamSearcher_postgres-14.2
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+      - environment.env
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+    driver: local

@@ -3,13 +3,11 @@ package com.dreamsearcher.notifier.controller;
 import com.dreamsearcher.notifier.model.Notification;
 import com.dreamsearcher.notifier.service.NotificationEngine;
 import com.dreamsearcher.notifier.service.NotificationService;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@EnableScheduling
 @RestController
 @RequestMapping("/api/v1/notifications")
 public class NotifiсationController
@@ -23,13 +21,7 @@ public class NotifiсationController
         this.notificationService = notificationService;
     }
 
-    /*@Scheduled(fixedRate = 90000)
-    public void startProcessNotifications()
-    {
-        notificationEngine.notificationBuildingProcess(notificationEngine.processCrawledItems());
-    }*/
-
-    @GetMapping
+    @GetMapping("/start")
     public void startProcessNotifications()
     {
         notificationEngine.notificationBuildingProcess(notificationEngine.processCrawledItems());
@@ -41,11 +33,11 @@ public class NotifiсationController
         notificationService.saveNotificationsToDataBase(notifications);
     }
 
-    /*@GetMapping
+    @GetMapping
     public ResponseEntity<List<Notification>> getAllNotifications(@RequestParam(value = "eventDateTime", required = false) String date[],
                                                                   @RequestParam(value = "deliveryStatus", required = false) boolean isDelivery)
     {
         return ResponseEntity.ok(notificationService.getAllNotifications(date, isDelivery));
-    }*/
+    }
 
 }
